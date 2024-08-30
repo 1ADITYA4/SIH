@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Fake Video Detection System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="title-section">
+                <h1>Deep Fake Video Detection System</h1>
+                <p>Authenticate videos and detect deep fakes using advanced AI/ML technologies.</p>
+            </div>
+            <nav class="navigation">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">How It Works</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Upload Section -->
+    <section class="upload-section">
+        <div class="container">
+            <h2>Upload Your Video</h2>
+            <p>Drag and drop your file here or click to select a video.</p>
+            <div class="upload-area" id="upload-area">
+                <input type="file" id="file-input" accept=".mp4, .avi, .mov" hidden>
+                <button id="upload-button">Choose File</button>
+            </div>
+            <p class="format-info">Supported formats: MP4, AVI, MOV. Maximum file size: 500MB.</p>
+        </div>
+    </section>
+
+    <!-- Additional content goes here -->
+</section>
+
+<!-- Analysis Section -->
+<section class="analysis-section" id="analysis-section" style="display: none;">
+    <div class="container">
+        <h2>Video Analysis in Progress</h2>
+        <div class="spinner" id="spinner"></div>
+        <div class="progress-bar" id="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+        <p id="estimated-time">Estimated time to complete: <span id="time-remaining">Calculating...</span></p>
+    </div>
+</section>
+
+<!--result - section-->
+<section class="results-section" id="results-section" style="display: none;">
+    <div class="container">
+        <h2>Analysis Results</h2>
+        <div class="summary-box" id="summary-box">
+            <p id="result-summary">Deep Fake Detected</p>
+            <p id="confidence-score">Confidence: <span id="confidence-value">98%</span></p>
+        </div>
+        <button id="details-button">View Detailed Report</button>
+        <button id="download-report-button">Download Report</button>
+
+        <!-- Detailed Analysis Breakdown -->
+        <div class="analysis-breakdown" id="analysis-breakdown" style="display: none;">
+            <h3>Analysis Breakdown</h3>
+            <ul>
+                <li><strong>CNN Analysis:</strong> Detected facial inconsistencies in 3 areas.</li>
+                <li><strong>RNN Analysis:</strong> Temporal anomalies found in the sequence of frames.</li>
+                <li><strong>Frequency Analysis:</strong> Abnormalities detected in high-frequency components.</li>
+            </ul>
+        </div>
+
+        <!-- Graphs and Visual Aids -->
+        <div class="graphs-section" id="graphs-section" style="display: none;">
+            <h3>Graphs and Visual Aids</h3>
+            <div class="graph-container">
+                <!-- Placeholder for Graphs -->
+                <img src="placeholder-graph.png" alt="Frequency Analysis Graph">
+                <img src="placeholder-graph2.png" alt="Temporal Inconsistencies Graph">
+            </div>
+        </div>
+
+        <!-- Technical Insights -->
+        <div class="technical-insights" id="technical-insights" style="display: none;">
+            <h3>Technical Insights</h3>
+            <p>The system used convolutional neural networks (CNNs) to detect inconsistencies in facial features and expressions, identifying specific anomalies that are typical of deep fakes. Recurrent neural networks (RNNs) and long short-term memory (LSTM) networks were employed to analyze the temporal sequence of video frames, finding irregularities that further confirmed the synthetic nature of the video. Frequency analysis highlighted unusual high-frequency noise patterns, indicative of deep fake manipulation techniques.</p>
+        </div>
+    </div>
+</section>
+
+<footer id="footer-section">
+    <div id="disclaimer">
+        <p>
+            Disclaimer: This tool is provided for educational and research purposes only. The accuracy of deep fake detection is not guaranteed. Use responsibly and consider legal and ethical implications.
+
+        </p>
+    </div>
+    <div id="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Contact US</a>
+
+    </div>
+    <div id="Social-meida-links">
+        <a href="https://facebook.com" target="_blank">Facebook</a>
+        <a href="https://twitter.com" target="_blank">Twitter</a>
+        <a href="https://instagram.com" target="_blank"></a>
+    </div>
+    <div id="Contact-info">
+        <p>For support or inquiries, please contact us at <a href="mailto:e22cseu1309@bennett.edu.in">e22cseu1309@bennett.edu.in</a>.</p>
+    </div>
+</footer>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,127 +1,141 @@
-// script.js
-
-document.addEventListener('DOMContentLoaded', function () {
-    const uploadArea = document.getElementById('upload-area');
+document.addEventListener('DOMContentLoaded', () => {
+    // Main upload and analysis handling
     const fileInput = document.getElementById('file-input');
     const uploadButton = document.getElementById('upload-button');
     const analysisSection = document.getElementById('analysis-section');
-    const resultsSection = document.getElementById('results-section');
-    const progressBar = document.getElementById('progress');
+    const progress = document.getElementById('progress');
     const timeRemaining = document.getElementById('time-remaining');
-    const resultSummary = document.getElementById('result-summary');
-    const confidenceValue = document.getElementById('confidence-value');
-    const detailsButton = document.getElementById('details-button');
-    const downloadReportButton = document.getElementById('download-report-button');
+    const resultsSection = document.getElementById('results-section');
+    const summaryBox = document.getElementById('summary-box');
     const analysisBreakdown = document.getElementById('analysis-breakdown');
     const graphsSection = document.getElementById('graphs-section');
     const technicalInsights = document.getElementById('technical-insights');
+    const detailsButton = document.getElementById('details-button');
+    const downloadReportButton = document.getElementById('download-report-button');
 
-    // Handle click event for the button to trigger file input
-    uploadButton.addEventListener('click', function () {
+    // Demo upload and result handling
+    const demoFileInput = document.getElementById('demo-file-input');
+    const demoUploadButton = document.getElementById('demo-upload-button');
+    const demoResult = document.getElementById('demo-result');
+    const demoResultText = document.getElementById('demo-result-text');
+    const demoProgress = document.getElementById('demo-progress');
+
+    // About Us dropdown handling
+    const aboutUsButton = document.getElementById('about-us-btn');
+    const aboutUsDropdown = document.getElementById('about-us-dropdown');
+    const guessButtons = document.querySelectorAll(".guess-button");
+
+    // Handle file selection for main analysis
+    uploadButton.addEventListener('click', () => {
         fileInput.click();
     });
 
-    // Highlight the upload area when a file is dragged over it
-    uploadArea.addEventListener('dragover', function (event) {
-        event.preventDefault();
-        uploadArea.classList.add('dragover');
-    });
+    guessButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+            const answer = this.getAttribute("data-answer");
+            const challengeItem = this.parentElement;
+            const resultElement = challengeItem.querySelector(".result");
 
-    // Remove highlight when the file is dragged away
-    uploadArea.addEventListener('dragleave', function () {
-        uploadArea.classList.remove('dragover');
-    });
-
-    // Handle drop event
-    uploadArea.addEventListener('drop', function (event) {
-        event.preventDefault();
-        uploadArea.classList.remove('dragover');
-        const files = event.dataTransfer.files;
-        handleFiles(files);
-    });
-
-    // Handle file input change
-    fileInput.addEventListener('change', function () {
-        const files = fileInput.files;
-        handleFiles(files);
-    });
-
-    document.getElementById('footer-links').addEventListener('click', function(event) {
-        if (event.target.tagName === 'A') {
-            const href = event.target.getAttribute('href');
-            // Example logic for handling footer link clicks
-            if (href === '#') {
-                event.preventDefault();
-                alert('Link to be implemented.');
+            // Logic to check the answer (for demo purposes, assume all answers are "fake")
+            if (answer === "fake") {
+                resultElement.textContent = "Correct! This is a deep fake.";
+                resultElement.style.color = "green";
+            } else {
+                resultElement.textContent = "Incorrect. This is actually a deep fake.";
+                resultElement.style.color = "red";
             }
-        }
+
+            resultElement.style.display = "block";
+        });
     });
-    document.getElementById('social-media-links').addEventListener('click', function(event) {
-        if (event.target.tagName === 'A') {
-            // Example logic for handling social media clicks
-            // Could be used to track clicks or open in a new tab
-            event.target.setAttribute('target', '_blank');
-        }
-    });
-    document.getElementById('contact-info').addEventListener('click', function(event) {
-        if (event.target.tagName === 'A') {
-            const href = event.target.getAttribute('href');
-            if (href.startsWith('mailto:')) {
-                // Example action for mailto links, this will open user's default email client
-            }
+
+    fileInput.addEventListener('change', (event) => {
+        if (event.target.files.length > 0) {
+            startAnalysis();
         }
     });
 
-    // Function to handle file selection and processing
-    function handleFiles(files) {
-        if (files.length > 0) {
-            alert(`Selected file: ${files[0].name}`);
-            // Show analysis section
-            analysisSection.style.display = 'block';
-            resultsSection.style.display = 'none'; // Hide results section initially
-
-            // Simulate analysis process
-            simulateAnalysis();
-        }
-    }
-
-    // Function to simulate video analysis process
-    function simulateAnalysis() {
-        let progress = 0;
-        const analysisDuration = 10; // Simulate a 10-second analysis
-
+    // Simulate the main video analysis process
+    function startAnalysis() {
+        analysisSection.style.display = 'block';
+        resultsSection.style.display = 'none';
+        progress.style.width = '0%';
+        timeRemaining.textContent = 'Calculating...';
+        
+        let progressValue = 0;
         const interval = setInterval(() => {
-            progress += 10;
-            progressBar.style.width = `${progress}%`;
-            timeRemaining.innerText = `${Math.max(0, analysisDuration - (progress / 10)).toFixed(1)} seconds`;
+            progressValue += 10;
+            progress.style.width = `${progressValue}%`;
 
-            if (progress >= 100) {
+            if (progressValue >= 100) {
                 clearInterval(interval);
-                // Show results after analysis
                 showResults();
             }
-        }, 1000);
+        }, 500);
     }
 
-    // Function to show analysis results
     function showResults() {
-        analysisSection.style.display = 'none'; // Hide analysis section
-        resultsSection.style.display = 'block'; // Show results section
-
-        // Simulate result data
-        resultSummary.innerText = "Deep Fake Detected";
-        confidenceValue.innerText = "98%";
-
-        // Display detailed analysis
-        detailsButton.addEventListener('click', function () {
-            analysisBreakdown.style.display = 'block';
-            graphsSection.style.display = 'block';
-            technicalInsights.style.display = 'block';
-        });
-
-        // Placeholder for download report functionality
-        downloadReportButton.addEventListener('click', function () {
-            alert('Download report functionality will be implemented here.');
-        });
+        analysisSection.style.display = 'none';
+        resultsSection.style.display = 'block';
+        summaryBox.style.display = 'block';
+        analysisBreakdown.style.display = 'none';
+        graphsSection.style.display = 'none';
+        technicalInsights.style.display = 'none';
     }
+
+    detailsButton.addEventListener('click', () => {
+        analysisBreakdown.style.display = 'block';
+        graphsSection.style.display = 'block';
+        technicalInsights.style.display = 'block';
+    });
+
+    downloadReportButton.addEventListener('click', () => {
+        alert('Downloading report...');
+    });
+
+    // Handle demo file selection
+    demoUploadButton.addEventListener('click', () => {
+        demoFileInput.click();
+    });
+
+    demoFileInput.addEventListener('change', (event) => {
+        if (event.target.files.length > 0) {
+            startDemoAnalysis();
+        }
+    });
+
+    // Simulate the demo analysis process
+    function startDemoAnalysis() {
+        demoResult.style.display = 'block';
+        demoResultText.textContent = 'Processing...';
+        demoProgress.style.width = '0%';
+
+        let demoProgressValue = 0;
+        const demoInterval = setInterval(() => {
+            demoProgressValue += 20;
+            demoProgress.style.width = `${demoProgressValue}%`;
+
+            if (demoProgressValue >= 100) {
+                clearInterval(demoInterval);
+                demoResultText.textContent = 'Deep Fake Detected!';
+            }
+        }, 300);
+    }
+
+    // Toggle About Us dropdown visibility
+    aboutUsButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (aboutUsDropdown.style.display === 'block') {
+            aboutUsDropdown.style.display = 'none';
+        } else {
+            aboutUsDropdown.style.display = 'block';
+        }
+    });
+
+    // Close About Us dropdown if clicked outside
+    window.addEventListener('click', (e) => {
+        if (!aboutUsButton.contains(e.target) && !aboutUsDropdown.contains(e.target)) {
+            aboutUsDropdown.style.display = 'none';
+        }
+    });
 });

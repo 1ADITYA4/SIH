@@ -39,12 +39,13 @@
     <!-- Add an Illustrative Section -->
     <section class="illustrative-section">
         <div class="container">
-            <h2>Understanding Deep Fakes</h2>
             <div class="illustration-content">
-                <img src="images\original-image-2.png" alt="Original Video Frame" class="responsive-image">
-                <!-- <img src="images/deepfake.png" alt="Deep Fake Altered Frame" class="responsive-image"> -->
+                <h2>Understanding Deep Fakes</h2>
+                <div class="responsive-image-container">
+                    <img src="images/original-image-2.png" alt="Original Video Frame" class="responsive-image">
+                </div>
+                <p>Deep fakes are synthetic media where a person in an existing image or video is replaced with someone else's likeness. They can be used to manipulate truth, creating a need for reliable detection methods.</p>
             </div>
-            <p>Deep fakes are synthetic media where a person in an existing image or video is replaced with someone else's likeness. They can be used to manipulate truth, creating a need for reliable detection methods.</p>
         </div>
     </section>
 
@@ -92,7 +93,7 @@
         <div class="challenge-content">
             <!-- Challenge Items -->
             <div class="challenge-item" id="challenge-item-1">
-                <video src="media/challenge-video-1.mp4" controls class="challenge-video"></video>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/iyiOVUbsPcM?si=vZpWoI7EOp_uAbwD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 <button class="guess-button" data-answer="fake">Guess Fake</button>
                 <button class="guess-button" data-answer="real">Guess Real</button>
                 <p class="result" id="result-1" style="display: none;"></p>

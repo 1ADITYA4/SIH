@@ -1,0 +1,18 @@
+{
+  "type": "module",
+  "dependencies": {
+    "@gradio/client": "^1.5.1",
+    "react": "^18.3.1"
+  },
+  "name": "sih",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

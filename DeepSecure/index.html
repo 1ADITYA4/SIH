@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Fake Video/Images Detection System</title>
+    <link rel="stylesheet" href="src/index.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="title-section">
+                <h1>Deep Fake Video and Image Detection System</h1>
+                <p>Authenticate videos and detect deep fakes using advanced AI/ML technologies.</p>
+            </div>
+            <nav class="navigation">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn" id="about-us-btn">About</a>
+                        <div class="dropdown-content" id="about-us-dropdown">
+                            <p>Our Deep Fake Video Detection System is built to help individuals and organizations authenticate videos and detect deep fakes using cutting-edge AI/ML technologies. With a combination of advanced algorithms, our tool provides an in-depth analysis of videos to ensure their authenticity.</p>
+                        </div>
+                    </li>
+                    <li><a href="#">How It Works</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="logo">
+                <img src="images\logo.png" alt="Logo" class="logo-image">
+            </div>
+        </div>
+    </header>
+
+    <!-- Add an Illustrative Section -->
+    <section class="illustrative-section">
+        <div class="container">
+            <div class="illustration-content">
+                <h2>Understanding Deep Fakes</h2>
+                <div class="responsive-image-container">
+                    <img src="images/original-image-2.png" alt="Original Video Frame" class="responsive-image">
+                </div>
+                <p>Deep fakes are synthetic media where a person in an existing image or video is replaced with someone else's likeness. They can be used to manipulate truth, creating a need for reliable detection methods.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upload Section -->
+    <section class="upload-section">
+        <div class="container">
+            <h2>Upload Your Video</h2>
+            <p>Drag and drop your file here or click to select a video.</p>
+            <div class="upload-area" id="upload-area">
+                <input type="file" id="file-input" accept=".mp4, .avi, .mov, .png, .jpeg, .svg" hidden>
+                <button id="upload-button">Choose File</button>
+                <div class="upload-status" id="upload-status" style="display: none;">
+                    <p id="upload-message">File uploaded successfully!</p>
+                </div>
+            </div>
+            <p class="format-info">Supported formats: MP4, AVI, MOV. Maximum file size: 500MB.</p>
+
+            <!-- URL Upload Option -->
+            <div class="url-upload">
+                <input type="text" id="url-input" placeholder="Paste the link to your image or video here">
+                <button id="url-upload-button">Upload from Link</button>
+            </div>
+             <!-- Compression Option -->
+             <div class="compression-option" id="compression-option" style="display: none;">
+                <p>The selected file is too large. Would you like to compress it before uploading?</p>
+                <button id="compress-button">Compress File</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="educational-content" id="educational-content">
+        <div class="container">
+            <h2>Understanding Deep Fakes</h2>
+            <div class="content">
+                <div class="text-content">
+                    <p>Deep fakes are synthetic media in which a person in an existing image or video is replaced with someone else's likeness. 
+                    Powered by AI technologies, such as deep learning and generative adversarial networks (GANs), deep fakes can be highly convincing 
+                    and are being used in a variety of contexts, from entertainment to malicious activities.</p>
+                    <p>The impact of deep fakes on society is profound. They can be used to spread misinformation, create non-consensual explicit content, 
+                    defame individuals, and manipulate political events. Detecting deep fakes is crucial to maintain trust and authenticity in digital media.</p>
+                </div>
+                <!-- <div class="image-content">
+                    <img src="Deepfake-image-and-original-image-2" alt="Deep Fake Example">
+                </div> -->
+            </div>
+            <div class="video-content">
+                <h3>Learn More About Deep Fakes</h3>
+                <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/oxXpB9pSETo?si=isbJTG0QFPRc9zpF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- User Challenges Section -->
+<section class="user-challenges" id="user-challenges">
+    <div class="container">
+        <h2>Deep Fake Detection Challenge</h2>
+        <p>Think you can spot a deep fake? Test your skills with our challenge below. Review the videos and images and guess which ones are real and which ones are fake!</p>
+        <div class="challenge-content">
+            <!-- Challenge Items -->
+            <div class="challenge-item" id="challenge-item-1">
+                <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/iyiOVUbsPcM?si=vZpWoI7EOp_uAbwD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
+                <button class="guess-button" data-answer="fake">Guess Fake</button>
+                <button class="guess-button" data-answer="real">Guess Real</button>
+                <p class="result" id="result-1" style="display: none;"></p>
+            </div>
+            <!-- Add more challenge items as needed -->
+        </div>
+    </div>
+</section>
+
+
+    <!-- Case Studies Section -->
+<section class="case-studies" id="case-studies">
+    <div class="container">
+        <h2>Case Studies</h2>
+        <div class="case-study">
+            <h3>Case Study 1: Political Manipulation</h3>
+            <p>In 2020, a deep fake video was used to manipulate public opinion during an election campaign. The video falsely depicted a political figure making inflammatory statements, which caused significant controversy and unrest. The deep fake detection system played a critical role in exposing the fake content, helping to mitigate the impact on the election.</p>
+        </div>
+        <div class="case-study">
+            <h3>Case Study 2: Corporate Espionage</h3>
+            <p>In a notable incident of corporate espionage, a deep fake video was used to impersonate a CEO and authorize fraudulent transactions. The detection of the deep fake through advanced AI technologies prevented financial loss and protected the company's reputation.</p>
+        </div>
+        <div class="case-study">
+            <h3>Case Study 3: Personal Privacy Violation</h3>
+            <p>In another instance, a deep fake video was created to blackmail an individual by depicting them in compromising situations. The timely detection of the deep fake content helped in taking legal action against the perpetrators and protecting the individual’s privacy.</p>
+        </div>
+    </div>
+</section>
+
+    <!-- Live Demo Section -->
+    <section class="live-demo-section">
+        <div class="container">
+            <h2>Live Demo</h2>
+            <p>See how our deep fake detection works in real-time.</p>
+            <div class="demo-upload-area">
+                <input type="file" id="demo-file-input" accept=".mp4, .avi, .mov" hidden>
+                <button id="demo-upload-button">Upload for Demo</button>
+            </div>
+            <div id="demo-result" style="display: none;">
+                <p>Analysis Result: <span id="demo-result-text">Processing...</span></p>
+                <div class="progress-bar">
+                    <div class="progress" id="demo-progress"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Analysis Section -->
+    <section class="analysis-section" id="analysis-section" style="display: none;">
+        <div class="container">
+            <h2>Video Analysis in Progress</h2>
+            <div class="spinner" id="spinner"></div>
+            <div class="progress-bar" id="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+            <p id="estimated-time">Estimated time to complete: <span id="time-remaining">Calculating...</span></p>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results-section" id="results-section" style="display: none;">
+        <div class="container">
+            <h2>Analysis Results</h2>
+            <div class="summary-box" id="summary-box">
+                <p id="result-summary">Deep Fake Detected</p>
+                <p id="confidence-score">Confidence: <span id="confidence-value">98%</span></p>
+            </div>
+            <button id="details-button">View Detailed Report</button>
+            <button id="download-report-button">Download Report</button>
+
+            <!-- Detailed Analysis Breakdown -->
+            <div class="analysis-breakdown" id="analysis-breakdown" style="display: none;">
+                <h3>Analysis Breakdown</h3>
+                <ul>
+                    <li><strong>CNN Analysis:</strong> Detected facial inconsistencies in 3 areas.</li>
+                    <li><strong>RNN Analysis:</strong> Temporal anomalies found in the sequence of frames.</li>
+                    <li><strong>Frequency Analysis:</strong> Abnormalities detected in high-frequency components.</li>
+                </ul>
+            </div>
+
+            <!-- Graphs and Visual Aids
+            <div class="graphs-section" id="graphs-section" style="display: none;">
+                <h3>Graphs and Visual Aids</h3>
+                <div class="graph-container">
+                </div>
+            </div> -->
+
+            <!-- Technical Insights -->
+            <div class="technical-insights" id="technical-insights" style="display: none;">
+                <h3>Technical Insights</h3>
+                <p>The system used convolutional neural networks (CNNs) to detect inconsistencies in facial features and expressions, identifying specific anomalies that are typical of deep fakes. Recurrent neural networks (RNNs) and long short-term memory (LSTM) networks were employed to analyze the temporal sequence of video frames, finding irregularities that further confirmed the synthetic nature of the video. Frequency analysis highlighted unusual high-frequency noise patterns, indicative of deep fake manipulation techniques.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical and Security Features Section -->
+<section class="security-features" id="security-features">
+    <div class="container">
+        <h2>Technical and Security Features</h2>
+        <div class="security-content">
+            <!-- Security Badges -->
+            <div class="security-badges">
+                <h3>Security Badges and Certifications</h3>
+                <p>Our platform is built with top-notch security protocols and has been certified by leading security organizations to ensure the safety and privacy of your data.</p>
+            </div>
+            
+            <!-- Data Privacy Information -->
+            <div class="data-privacy">
+                <h3>Data Privacy Information</h3>
+                <p>We take your privacy seriously. Any video or image you upload is securely stored and is not shared with third parties. We employ state-of-the-art encryption and security measures to protect your personal information and ensure your privacy.</p>
+                <p>Read our <a href="#privacy-policy" class="privacy-link">Privacy Policy</a> to learn more about how we handle and protect your data.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Footer Section -->
+    <footer id="footer-section">
+        <div id="disclaimer">
+            <p>Disclaimer: This tool is provided for educational and research purposes only. The accuracy of deep fake detection is not guaranteed. Use responsibly and consider legal and ethical implications.</p>
+        </div>
+        <div id="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <div id="social-media-links">
+            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+        </div>
+        <div id="contact-info">
+            <p>For support or inquiries, please contact us at <a href="mailto:e22cseu1309@bennett.edu.in">e22cseu1309@bennett.edu.in</a>.</p>
+        </div>
+    </footer>
+    <script type="module" src="script.mjs"></script>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@latest"></script> -->
+
+</body>
+</html>

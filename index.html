@@ -56,10 +56,23 @@
             <p>Drag and drop your file here or click to select a video.</p>
             <div class="upload-area" id="upload-area">
                 <input type="file" id="file-input" accept=".mp4, .avi, .mov, .png, .jpeg, .svg" hidden>
-                <!-- <input type="file" id="file-input" accept> -->
-                <button id="upload-button"> Choose File</button>
+                <button id="upload-button">Choose File</button>
+                <div class="upload-status" id="upload-status" style="display: none;">
+                    <p id="upload-message">File uploaded successfully!</p>
+                </div>
             </div>
             <p class="format-info">Supported formats: MP4, AVI, MOV. Maximum file size: 500MB.</p>
+
+            <!-- URL Upload Option -->
+            <div class="url-upload">
+                <input type="text" id="url-input" placeholder="Paste the link to your image or video here">
+                <button id="url-upload-button">Upload from Link</button>
+            </div>
+             <!-- Compression Option -->
+             <div class="compression-option" id="compression-option" style="display: none;">
+                <p>The selected file is too large. Would you like to compress it before uploading?</p>
+                <button id="compress-button">Compress File</button>
+            </div>
         </div>
     </section>
 
@@ -158,8 +171,8 @@
         <div class="container">
             <h2>Analysis Results</h2>
             <div class="summary-box" id="summary-box">
-                <p id="result-summary"><img src="checkicon.png" alt="Check Icon"> Deep Fake Detected</p>
-                <p id="confidence-score"><img src="confidence-icon.svg" alt="Confidence Icon"> Confidence: <span id="confidence-value">98%</span></p>
+                <p id="result-summary">Deep Fake Detected</p>
+                <p id="confidence-score">Confidence: <span id="confidence-value">98%</span></p>
             </div>
             <button id="details-button">View Detailed Report</button>
             <button id="download-report-button">Download Report</button>
@@ -174,15 +187,12 @@
                 </ul>
             </div>
 
-            <!-- Graphs and Visual Aids -->
+            <!-- Graphs and Visual Aids
             <div class="graphs-section" id="graphs-section" style="display: none;">
                 <h3>Graphs and Visual Aids</h3>
                 <div class="graph-container">
-                    <!-- Placeholder for Graphs -->
-                    <img src="frequency-graph.png" alt="Frequency Analysis Graph">
-                    <img src="temporal-graph.png" alt="Temporal Inconsistencies Graph">
                 </div>
-            </div>
+            </div> -->
 
             <!-- Technical Insights -->
             <div class="technical-insights" id="technical-insights" style="display: none;">
@@ -201,9 +211,6 @@
             <div class="security-badges">
                 <h3>Security Badges and Certifications</h3>
                 <p>Our platform is built with top-notch security protocols and has been certified by leading security organizations to ensure the safety and privacy of your data.</p>
-                <img src="images/security-badge-1.png" alt="Security Badge 1" class="security-badge">
-                <img src="images/security-badge-2.png" alt="Security Badge 2" class="security-badge">
-                <!-- Add more badges as necessary -->
             </div>
             
             <!-- Data Privacy Information -->
@@ -236,6 +243,9 @@
             <p>For support or inquiries, please contact us at <a href="mailto:e22cseu1309@bennett.edu.in">e22cseu1309@bennett.edu.in</a>.</p>
         </div>
     </footer>
-    <script src="script.js"></script>
+    <script type="module" src="script.mjs"></script>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@latest"></script> -->
+
 </body>
 </html>

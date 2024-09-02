@@ -38,12 +38,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (fileInput && uploadButton) {
         uploadButton.addEventListener('click', () => {
-            console.log('Button clicked');  // Check if button click is registered
             fileInput.click();
         });
 
         fileInput.addEventListener('change', (event) => {
-            console.log('File input changed');  // Check if file input change is registered
             if (event.target.files.length > 0) {
                 const file = event.target.files[0];
                 if (isSupportedFileType(file)) {
@@ -103,6 +101,55 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     });
 
+
+      // Function to update progress bar
+      function updateProgressBar(progressValue, duration) {
+        let progressPercent = 0;
+        progress.style.width = '0%';
+        const interval = setInterval(() => {
+            progressPercent += 10;
+            progress.style.width = `${progressPercent}%`;
+            timeRemaining.textContent = `Time remaining: ${duration - (progressPercent / 10)} seconds`;
+
+            if (progressPercent >= 100) {
+                clearInterval(interval);
+                showResults();
+            }
+        }, 1000);
+    }
+
+    // Function to handle file storage (client-side simulation)
+    function storeFile(file) {
+        // This is a placeholder for storing the file. You might want to send the file to the server or save it locally
+        console.log('File stored:', file.name);
+        // You can implement server-side storage here by sending a POST request
+    }
+
+    // Start analysis process
+    function startAnalysis(file) {
+        storeFile(file); // Store file
+        analysisSection.style.display = 'block';
+        resultsSection.style.display = 'none';
+        updateProgressBar(0, 10); // Update the progress bar with an estimated duration
+        analyzeBlob(file); // Simulate analysis
+    }
+
+    // Simulate the main video analysis process
+    function analyzeBlob(blob) {
+        console.log('Analyzing blob:', blob);
+        // Simulate analysis completion after 2 seconds
+        setTimeout(showResults, 2000);
+    }
+
+    function showResults() {
+        analysisSection.style.display = 'none';
+        resultsSection.style.display = 'block';
+        summaryBox.style.display = 'block';
+        analysisBreakdown.style.display = 'none';
+        graphsSection.style.display = 'none';
+        technicalInsights.style.display = 'none';
+    }
+    
     function isValidURL(url) {
         const pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
             '((([a-zA-Z0-9\\-]+\\.)+[a-zA-Z]{2,})|' + // domain name
@@ -142,22 +189,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         }, 500);
 
         if (typeof fileOrUrl === 'string') {
-            fetch(fileOrUrl)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.blob();
-                })
-                .then(blob => {
-                    analyzeBlob(blob);
-                })
-                .catch(error => {
-                    console.error('Error fetching the file:', error);
-                    alert('Error fetching the file. Please check the URL and try again.');
-                });
+            fetchAndPredictImage(fileOrUrl, "Kxngh/SIH_DeepSecure", "/predict");
         } else {
-            analyzeBlob(fileOrUrl); // Pass file directly to analyzeBlob
+            const reader = new FileReader();
+            reader.onloadend = function() {
+                fetchAndPredictImage(reader.result, "Kxngh/SIH_DeepSecure", "/predict");
+            };
+            reader.readAsDataURL(fileOrUrl);
         }
     }
 
@@ -241,26 +279,33 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
-    async function fetchAndPredictImage(imageUrl, clientURL, endpoint) {
+    // Updated `fetchAndPredictImage` function
+    async function fetchAndPredictImage(imageSource, clientURL, endpoint) {
         try {
-            // Fetch the image from the provided URL
-            const response = await fetch(imageUrl);
-            if (!response.ok) {
-                throw new Error(`Failed to fetch image: ${response.statusText}`);
+            let imageBlob;
+            if (typeof imageSource === 'string') {
+                // Fetch the image from the provided URL
+                const response = await fetch(imageSource);
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch image: ${response.statusText}`);
+                }
+                imageBlob = await response.blob();
+            } else {
+                // Directly use the uploaded file
+                imageBlob = imageSource;
             }
-            const imageBlob = await response.blob();
-    
+
             // Connect to the client using the provided clientURL
             const client = await Client.connect(clientURL);
             if (!client) {
                 throw new Error("Failed to connect to the client");
             }
-    
+
             // Make a prediction request with the image using the provided endpoint
             const result = await client.predict(endpoint, {
                 image: imageBlob,
             });
-    
+
             // Return the prediction result
             return result;
         } catch (error) {
@@ -268,18 +313,18 @@ document.addEventListener('DOMContentLoaded', async () => {
             return null; // Or handle error appropriately
         }
     }
-    
-    fetchAndPredictImage(
-        "https://raw.githubusercontent.com/gradio-app/gradio/main/test/test_files/bus.png",
-        "Kxngh/SIH_DeepSecure",
-        "/predict"
-    ).then(result => {
-        if (result) {
-            console.log("Prediction result:", result);
-        } else {
-            console.log("Prediction failed.");
-        }
-    });
+
+    // fetchAndPredictImage(
+    //     "https://raw.githubusercontent.com/gradio-app/gradio/main/test/test_files/bus.png",
+    //     "Kxngh/SIH_DeepSecure",
+    //     "/predict"
+    // ).then(result => {
+    //     if (result) {
+    //         console.log("Prediction result:", result);
+    //     } else {
+    //         console.log("Prediction failed.");
+    //     }
+    // });
     
       
       
